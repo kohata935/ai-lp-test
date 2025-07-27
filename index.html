@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIプログラミング学習コミュニティ</title>
+    <style>
+        /* 基本スタイル */
+        :root {
+            --bg-color: #f4f7f5;      /* ごく薄い緑の背景 */
+            --primary-color: #ffffff;   /* 白 */
+            --secondary-color: #e8f5e9; /* 薄い緑 */
+            --accent-color: #4caf50; /* 明るい緑 */
+            --text-color: #333333;     /* 暗いテキスト色 */
+            --discord-color: #5865F2;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: var(--text-color);
+        }
+
+        /* セクション共通スタイル */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        section:nth-of-type(odd) {
+            background-color: var(--primary-color);
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto 20px auto;
+        }
+
+        /* ヒーローセクション */
+        #hero {
+            padding: 80px 20px;
+        }
+
+        #hero .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        /* ボタン */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-discord {
+            background-color: var(--discord-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+        }
+
+        .btn-discord:hover {
+            background-color: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.5);
+        }
+
+        /* 特長セクション */
+        #features .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item h3 {
+            font-size: 1.5em;
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+
+        /* 対象者セクション */
+        #target ul {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+
+        #target li {
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234caf50"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>') no-repeat left center;
+            background-size: 24px;
+            padding-left: 35px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* 参加方法セクション */
+        #join p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+
+        /* FAQセクション */
+        #faq .faq-item {
+            background-color: var(--primary-color);
+            margin-bottom: 15px;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        #faq details {
+            padding: 20px;
+        }
+
+        #faq summary {
+            font-weight: bold;
+            font-size: 1.2em;
+            cursor: pointer;
+            outline: none;
+            list-style: none; /* markerを消す for Firefox */
+        }
+        #faq summary::-webkit-details-marker { /* markerを消す for Chrome, Safari */
+            display: none;
+        }
+
+        #faq summary::before {
+            content: 'Q. ';
+            color: var(--accent-color);
+        }
+
+        #faq details[open] summary {
+            color: var(--accent-color);
+        }
+
+        #faq .answer {
+            margin-top: 15px;
+            padding-left: 2.2em;
+            border-left: 3px solid var(--secondary-color);
+        }
+        #faq .answer::before {
+            content: 'A. ';
+            font-weight: bold;
+        }
+
+        /* フッター */
+        footer {
+            background-color: #1a3a2a; /* 濃い緑 */
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AI Code Crafters</h1>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h2>AIと共に、未来のコードを創造しよう。</h2>
+                <p class="subtitle">日本最大級のAIプログラミング学習コミュニティへようこそ。<br>仲間と共に学び、スキルを高め、新しい時代を切り拓くエンジニアになろう。</p>
+                <!-- ↓↓↓ あなたのDiscord招待リンクに書き換えてください ↓↓↓ -->
+                <a href="#" class="btn btn-discord">Discordに参加する</a>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>このコミュニティで得られること</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h3>最先端の知識</h3>
+                        <p>最新のAI論文や技術トレンドを共有。常に業界の最前線でいられます。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>実践的なスキル</h3>
+                        <p>もくもく会や共同開発プロジェクトを通じて、学んだ知識を即実践できます。</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>頼れる仲間</h3>
+                        <p>初心者から現役エンジニアまで。多様な仲間と交流し、共に成長できます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="target">
+            <div class="container">
+                <h2>こんな方におすすめ</h2>
+                <ul>
+                    <li>AIや機械学習をプログラムに活かしたい方</li>
+                    <li>独学でのプログラミングに限界を感じている方</li>
+                    <li>一緒に開発プロジェクトを進める仲間を探している方</li>
+                    <li>最新の技術情報やトレンドをキャッチアップしたい方</li>
+                    <li>初心者だけど、これからAIプログラミングを学びたい方</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="join">
+            <div class="container">
+                <h2>参加はかんたん、ワンクリックで。</h2>
+                <p>下のボタンからDiscordサーバーに参加するだけ。今すぐコミュニティの一員になろう！</p>
+                <!-- ↓↓↓ あなたのDiscord招待リンクに書き換えてください ↓↓↓ -->
+                <a href="#" class="btn btn-discord">無料でコミュニティに参加する</a>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <h2>よくある質問</h2>
+                <div class="faq-item">
+                    <details>
+                        <summary>参加に費用はかかりますか？</summary>
+                        <div class="answer">
+                            <p>いいえ、コミュニティへの参加は完全に無料です。安心してご参加ください。</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary>プログラミング初心者でも大丈夫ですか？</summary>
+                        <div class="answer">
+                            <p>はい、大歓迎です！初心者向けのチャンネルやメンター制度も用意しており、基礎から学べる環境が整っています。</p>
+                        </div>
+                    </details>
+                </div>
+                <div class="faq-item">
+                    <details>
+                        <summary>どんな活動をしていますか？</summary>
+                        <div class="answer">
+                            <p>オンラインでのもくもく会、特定のテーマに関する勉強会、チームでのアプリ開発プロジェクト、雑談など、様々な活動を行っています。</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AI Code Crafters. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
